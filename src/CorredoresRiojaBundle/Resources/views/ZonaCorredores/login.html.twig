@@ -1,0 +1,47 @@
+{# empty Twig template #}
+{% extends 'CorredoresRiojaBundle:ZonaCorredores:zonacorredores.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<!--<link href="{{ asset('bundles/corredoresrioja/css/formulario.css')}}" rel="stylesheet" media="all" type="text/css">-->
+	<link href="{{ asset('bundles/corredoresrioja/css/entrada.css')}}" rel="stylesheet" media="all" type="text/css">
+
+{% endblock %}
+{% block title %} Acceso de corredores registrados{% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('usuario_login.en') }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('usuario_login.es') }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content2 %}
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+        <h1>Acceso de corredores registrados</h1>
+	<form action="{{ path('usuario_login_check') }}" method="post">
+		<label for="username">{{ 'base.username' | trans }}: </label>
+		<input type="text" id="username" name="_username" value="{{ last_username }}" />
+                <br/>
+		<label for="password">{{ 'base.password' | trans }}:</label>
+		<input type="password" id="password" name="_password" />
+                <br/>
+		<button type="submit">login</button>
+	</form>
+
+	<div class="nuevo izda">
+		<div>
+			<p style="font-weight:bold; margin-top:5px">Nuevo Corredor.</p>
+			<p style="margin-top:5px;line-height:1.4em;">Para poder inscribirte en las carreras es necesario registrarse. </p>
+		</div>
+
+		<div  class="registrob">
+			<a href="{{ path('registro')}}">REGISTRESE</a>
+		</div> 
+	</div>	     
+	<div class="clear"> </div>  
+
+{% endblock %}

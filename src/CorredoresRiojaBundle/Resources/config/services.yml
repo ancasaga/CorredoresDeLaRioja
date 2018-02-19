@@ -1,0 +1,32 @@
+#services:
+#    corredores_de_la_rioja_corredores_de_la_rioja.example:
+#        class: CorredoresDeLaRioja\CorredoresDeLaRiojaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+services:
+    carrerasrepository:
+        alias: carrerasrepository.inmemory
+    carrerasrepository.inmemory:
+        class: App\CorredoresRiojaInfraestructure\InMemoryRepository\InMemoryCarreraRepository
+        public: false
+    
+    organizacionrepository:
+        alias: organizacionrepository.inmemory
+    organizacionrepository.inmemory:
+        class: App\CorredoresRiojaInfraestructure\InMemoryRepository\InMemoryOrganizacionRepository
+        public: false
+    
+    corredorrepository:
+        alias: corredorrepository.inmemory
+    corredorrepository.inmemory:
+        class: App\CorredoresRiojaInfraestructure\InMemoryRepository\InMemoryCorredorRepository
+        public: false
+    
+    participanterepository:
+        alias: participanterepository.inmemory
+    participanterepository.inmemory:
+        class: App\CorredoresRiojaInfraestructure\InMemoryRepository\InMemoryParticipanteRepository
+        public: false
+    corredores_user_provider:
+        class : CorredoresRiojaBundle\Security\CorredorUserProvider
+        arguments: ["@corredorrepository"]

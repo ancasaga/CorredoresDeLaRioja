@@ -1,0 +1,71 @@
+{# Extendemos de la plantilla base #}
+{% extends 'CorredoresRiojaBundle:ZonaCorredores:zonacorredores.html.twig' %}
+{# Definimos los bloques #}
+{# El bloque del título #}
+{% block title %} Bienvenido a Carreras por La Rioja{% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carreras.en') }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carreras.es') }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content2 %}
+		<h1>Carreras por disputar</h1>
+		<div class="centro"/>
+		<ul>
+			<li class="columna">
+				<ul>
+
+                                    {% for carrera in carrerasNo %}
+                                        <li class="celda">
+
+                                            <div class="parteCelda">
+                                                <img src="{{asset('bundles/corredoresrioja/images/'~carrera.imagen )}}"/>
+                                            </div>
+                                            <div class="parteCelda2">
+                                                <h3><a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug', {'slug':carrera.slug}) }}">{{ carrera.nombre }}</a></h3>
+                                                <p>2018/01/01 12:01</p>
+                                                <div style="float:right; padding:10px 5px">
+                                                    <a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+                                                       href="/es/corredores/inscribir/matutrail" ><span>Inscríbete</span> </a>
+                                                </div>
+                                            </div>    
+                                        </li>
+                                       
+                                    {% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>   
+	<h1>Carreras disputadas</h1>
+	<div class="centro"/>
+	<ul>
+		<li class="columna">
+			<ul>
+				{% for carrera in carrerasSi %}
+				<li class="celda">
+                                 
+					<div class="parteCelda">
+						<img src="{{asset('bundles/corredoresrioja/images/'~carrera.imagen )}}"/>
+					</div>
+					<div class="parteCelda2">
+						<h3><a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug', {'slug':carrera.slug}) }}">{{ carrera.nombre }}</a></h3>
+						<p>2018/01/01 12:01</p>
+						<div style="float:right; padding:10px 5px">
+							<a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+							   href="/es/corredores/inscribir/matutrail" ><span>Clasificación</span> </a>
+						</div>
+					</div>    
+				</li>
+                               {% endfor %}
+			</ul>
+		</li>
+	</ul>
+
+
+
+{% endblock %}

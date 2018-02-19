@@ -1,0 +1,14 @@
+corredores_rioja:
+    resource: "@CorredoresRiojaBundle/Resources/config/routing.yml"
+    prefix:   /
+    type: be_simple_i18n
+
+#app_corredores_rioja:
+#    resource: "@AppCorredoresRiojaBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#corredores_de_la_rioja_corredores_de_la_rioja:
+#    resource: "@CorredoresDeLaRiojaCorredoresDeLaRiojaBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>base.corredores</source>
+                <target>Zona Corredores</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>base.organizadores</source>
+                <target>Zona Organizadores</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>base.intranet</source>
+                <target>Intranet</target>
+            </trans-unit>
+	    <trans-unit id="4">
+                <source>base.portada</source>
+                <target>Portada</target>
+            </trans-unit>
+ 	    <trans-unit id="5">
+                <source>base.carreras</source>
+                <target>Carreras</target>
+            </trans-unit>
+	    <trans-unit id="6">
+                <source>base.miscarreras</source>
+                <target>Mis carreras</target>
+            </trans-unit>
+	    <trans-unit id="7">
+                <source>base.login</source>
+                <target>Login</target>
+            </trans-unit>
+	    <trans-unit id="8">
+                <source>base.contacto</source>
+                <target>Contacto</target>
+            </trans-unit>
+		<trans-unit id="9">
+				<source>base.username</source>
+				<target>Usuario</target>
+			</trans-unit>
+		<trans-unit id="10">
+				<source>base.password</source>
+				<target>Contraseña</target>
+			</trans-unit>
+		<trans-unit id="11">
+			<source>base.perfil</source>
+			<target>Perfil</target>
+		</trans-unit>
+	</body>
+    </file>
+</xliff>

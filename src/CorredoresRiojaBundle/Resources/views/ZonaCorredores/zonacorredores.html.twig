@@ -1,0 +1,59 @@
+{# Extendemos de la plantilla base #}
+{% extends 'CorredoresRiojaBundle:Base:base.html.twig' %}
+{# Definimos los bloques #}
+{# El bloque del título #}
+{% block title %} Zona corredores {% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_homepage.en') }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_homepage.es') }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div id="menu" >
+        <ul>
+            <li>
+                <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_portada')}}">{{ 'base.portada' | trans }}<br/></a>
+            </li>
+            <li>
+                <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carreras')}}">{{ 'base.carreras' | trans }}<br/></a>
+            </li>
+            <li>
+                <a href="{{ path('mis_carreras')}}">{{ 'base.miscarreras'| trans }}<br/></a>
+            </li>
+            <li>
+		    {% if app.user and is_granted('ROLE_CORREDOR') %}  
+			    <a href="{{ path('perfil') }}">{{ 'base.perfil'| trans }}<br/></a></li>
+		    <li><a href="{{ path('usuario_logout') }}">Logout<br/></a>
+			    {% else %}
+			    <a href="{{ path('usuario_login') }}">{{ 'base.login'| trans }}<br/></a>
+		    {% endif %}
+            </li>
+        </ul>
+        <div style="clear: left;"></div>
+    </div>
+</div>
+<div class="sombra">
+    <div class="nucleo">
+        <div id="migas">
+            <div class="clear"></div> 
+
+        </div>
+
+
+        <div class="contenido">
+        {% block content2 %}{% endblock %}
+    </div>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p clas="info">{{ mensaje }}</p>
+    {% endfor %}
+
+
+{% endblock %}
+
+

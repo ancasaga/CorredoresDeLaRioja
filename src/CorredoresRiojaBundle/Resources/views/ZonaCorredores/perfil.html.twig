@@ -1,0 +1,26 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends 'CorredoresRiojaBundle:ZonaCorredores:zonacorredores.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/corredoresrioja/css/formulario.css')}}" rel="stylesheet" media="all" type="text/css">
+    <link href="{{ asset('bundles/corredoresrioja/css/entrada.css')}}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('perfil.en') }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('perfil.es') }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content2 %}
+
+    <form action="{{ path('registro') }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_widget(formulario) }}
+   </form>
+    <div class="clear"> </div>   
+
+{% endblock %}

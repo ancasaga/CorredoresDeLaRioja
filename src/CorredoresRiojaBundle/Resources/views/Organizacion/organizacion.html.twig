@@ -1,0 +1,32 @@
+{# Extendemos de la plantilla base #}
+{% extends 'CorredoresRiojaBundle:ZonaCorredores:zonacorredores.html.twig' %}
+{# Definimos los bloques #}
+{# El bloque del título #}
+{% block title %} Bienvenido a Carreras por La Rioja{% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_organizacion.en', {'slug':organizacion.slug}) }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_organizacion.es', {'slug':organizacion.slug}) }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content2 %}
+
+	<div class="centro">
+		<h1>{{ organizacion.nombre }}</h1>
+		<p>{{ organizacion.nombre }}</p>
+		<p><a href="mailto:{{ organizacion.email }}">Contacta</a></p>
+		<p>Carreras organizadas:</p>
+		<ol>
+			{% for carrera in listaCarrerasDis %}
+				<li><a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug', {'slug':carrera.slug}) }}">{{ carrera.nombre }}</a></li>
+			{% endfor %}
+			{% for carrera in listaCarrerasNoDis %}
+				<li><a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug', {'slug':carrera.slug}) }}">{{ carrera.nombre }}</a></li>
+			{% endfor %}
+		</ol>
+	</div>
+{% endblock %}
+

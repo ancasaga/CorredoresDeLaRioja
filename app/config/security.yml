@@ -1,0 +1,49 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+       App\CorredoresRiojaDomain\Model\Corredor : 
+           algorithm: plaintext
+       CorredoresRiojaBundle\Security\CorredorUser: 
+            algorithm: plaintext
+    providers:
+        in_memory:
+            memory: ~
+        corredores:
+            id: corredores_user_provider
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+           
+        default:
+            anonymous: ~
+            http_basic: ~
+            form_login:
+                login_path: usuario_login
+                check_path: usuario_login_check
+                default_target_path: corredores_de_la_rioja_corredores_de_la_rioja_portada
+            provider: corredores
+            logout:
+                path:   usuario_logout
+                target: corredores_de_la_rioja_corredores_de_la_rioja_portada
+
+  
+
+    access_control:
+       - { path: ^/(es|en)/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/(es|en)/admin/users, roles: ROLE_SUPER_ADMIN } 
+       - { path: ^/(es|en)/admin, roles: ROLE_ADMIN }
+       - { path: ^/es/corredores/miscarreras, roles: ROLE_CORREDOR }
+       - { path: ^/en/runners/myraces, roles: ROLE_CORREDOR }
+       - { path: ^/es/corredores/perfil, roles: ROLE_CORREDOR }
+       - { path: ^/en/runners/perfil, roles: ROLE_CORREDOR }
+       
+
+
+
+
+

@@ -1,0 +1,82 @@
+{# Extendemos de la plantilla base #}
+{% extends 'CorredoresRiojaBundle:ZonaCorredores:zonacorredores.html.twig' %}
+{# Definimos los bloques #}
+{# El bloque del título #}
+{% block title %} Bienvenido a Carreras por La Rioja{% endblock %}
+{% block selector %}
+    {% if locale == 'es' %}
+        <span>Español</span> &nbsp; | &nbsp;
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug.en', {'slug':carrera.slug}) }}">English</a>
+    {% elseif locale == 'en' %}
+        <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_carrerasslug.es', {'slug':carrera.slug}) }}">Español</a> &nbsp; | &nbsp;
+        <span>English</span>
+    {% endif %}
+{% endblock %}
+{% block content2 %}
+
+    <div class="centro">
+
+        <h1> {{ carrera.nombre }}</h1>
+        <div class="parteCelda">
+            <img src="{{asset('bundles/corredoresrioja/images/'~carrera.imagen )}}"/>
+        </div>
+        <div class="parteCelda2">
+            <p>{{ carrera.descripcion }}</p>
+            <p>Fecha celebración:{{ carrera.fechaCelebracion|date('Y-m-d') }}
+            <p>Distancia: {{ carrera.distancia }}</p>
+            <p>Organiza: <a href="{{ path('corredores_de_la_rioja_corredores_de_la_rioja_organizacion', {'slug':carrera.organizacion.slug}) }}">{{ carrera.organizacion.nombre }}</a></p>  
+        </div>
+    </div>
+    <div class="clear"></div>   
+    <div class="centro">
+        {% if (carrera.fechaLimiteInscripcion|date('Y-m-d'))>( 'now'| date('Y-m-d'))  %}
+            <h3>Tienes hasta el  {{ carrera.fechaLimiteInscripcion|date('Y-m-d') }} para inscribirte. </h3>
+            <div style="float:right; padding:10px 5px">
+                <a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+                   href="/es/corredores/inscribir/matutrail" ><span>Inscríbete</span> </a>
+            </div>
+            <div class="clear"></div>  
+            <h3>Inscritos:</h3>
+            {% for participante in listParti %}
+                {{ participante.corredor.nombre }}<br/>
+            {% endfor %}
+        {% else %}
+
+
+
+            <h3>Lo sentimos, ya no te puedes inscribir a esta carrera.</h3>   
+            <div class="clear"></div> 
+            <h3>Clasificación:</h3>   
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Nombre</th>
+                        <th>Tiempo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for participante in listParti %}
+                        <tr>
+                            <td>
+                                {{ participante.dorsal}}
+                            </td>
+                            <td>   
+                                {{ participante.corredor.nombre }}<br/>
+                            </td>
+                            <th>
+                                {{ participante.tiempo| date('h:i:s')}}
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
